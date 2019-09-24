@@ -8,20 +8,24 @@ public class PontoInteresse {
     private Coordenada coordenada;
     private String imagem;
     private String audio;
+    private Local local;
 
     public PontoInteresse() {
         init();
     }
 
-    public PontoInteresse(String nome, Coordenada coordenada, String imagem, String audio) {
+    public PontoInteresse(Local local, String nome, Coordenada coordenada, String imagem, String audio) {
         init();
+        this.local = local;
         this.nome = nome;
         this.coordenada = coordenada;
         this.imagem = imagem;
         this.audio = audio;
     }
 
-    public PontoInteresse(int id, String nome, Coordenada coordenada, String imagem, String audio) {
+    public PontoInteresse(Local local, int id, String nome, Coordenada coordenada, String imagem, String audio) {
+        init();
+        this.local = local;
         this.id = id;
         this.nome = nome;
         this.coordenada = coordenada;
@@ -33,6 +37,15 @@ public class PontoInteresse {
         id = -1;
         imagem = null;
         audio = null;
+        local = null;
+    }
+
+    public Local getLocal() {
+        return local;
+    }
+
+    public void setLocal(Local local) {
+        this.local = local;
     }
 
     public int getId() {
