@@ -112,7 +112,7 @@ public class LocalDetalhesActivity extends AppCompatActivity {
     private void salvarLocal(){
         if(!nomeLocalEditText.getText().toString().isEmpty()){
             String pathFoto = gravarArquivoFoto(nomeLocalEditText.getText().toString());
-            String pathAudio = audioUri.toString();
+            String pathAudio = audioUri != null ? audioUri.toString() : "";
             Local local = new Local(
                     nomeLocalEditText.getText().toString(),
                     new Coordenada(lastLocation.getLatitude(), lastLocation.getLongitude()),
