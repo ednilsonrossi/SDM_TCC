@@ -10,12 +10,15 @@ import java.util.List;
 
 import br.pro.ednilsonrossi.visitalocal.model.Coordenada;
 import br.pro.ednilsonrossi.visitalocal.model.Local;
+import br.pro.ednilsonrossi.visitalocal.model.PontoInteresse;
 
 public class BDLocalController {
-     private SQLiteDatabase sqLiteDatabase;
-     private BancoDados bancoDados;
+    private Context context;
+    private SQLiteDatabase sqLiteDatabase;
+    private BancoDados bancoDados;
 
     public BDLocalController(Context context) {
+        this.context = context;
         bancoDados = new BancoDados(context);
     }
 
@@ -42,6 +45,12 @@ public class BDLocalController {
                         cursor.getString(3),
                         cursor.getString(4));
                 local.setId(cursor.getInt(5));
+
+                List<PontoInteresse> pontos = new BDPontoInteresseController(context).recuperaTodos(local);
+                for(PontoInteresse p : pontos){
+                    local.addPontoInteresse(p);
+                }
+
                 todos.add(local);
             }
             cursor.close();
