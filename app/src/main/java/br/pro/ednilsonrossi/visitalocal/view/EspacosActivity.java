@@ -1,10 +1,12 @@
 package br.pro.ednilsonrossi.visitalocal.view;
 
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import java.util.List;
 
@@ -23,11 +25,21 @@ public class EspacosActivity extends AppCompatActivity {
     private EspacosAdapter espacosAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
+    private FloatingActionButton novoPontoInteresseActionButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_espacos);
+
+        novoPontoInteresseActionButton = (FloatingActionButton) findViewById(R.id.fab_adicionar_ponto_interesse);
+        novoPontoInteresseActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                novoPontoInteresse();
+            }
+        });
 
         recuperateLocal();
         inicializarRecyclerView();
@@ -55,5 +67,11 @@ public class EspacosActivity extends AppCompatActivity {
         pontosRecyclerView.setLayoutManager(layoutManager);
         espacosAdapter = new EspacosAdapter(this, pontoInteresseList);
         pontosRecyclerView.setAdapter(espacosAdapter);
+    }
+
+    private void novoPontoInteresse(){
+        Intent intent = new Intent(this, EspacoDetalhesActivity.class);
+        intent.putExtra("id_local", local.getId());
+        startActivity(intent);
     }
 }

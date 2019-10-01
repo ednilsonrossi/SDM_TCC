@@ -36,7 +36,7 @@ public class BDPontoInteresseController {
 
         sqLiteDatabase = bancoDados.getWritableDatabase();
 
-        retorno = sqLiteDatabase.insert(BancoDados.TABLE_LOCAL, null, valores);
+        retorno = sqLiteDatabase.insert(BancoDados.TABLE_PONTOINTERESSE, null, valores);
 
         return retorno != -1;
     }

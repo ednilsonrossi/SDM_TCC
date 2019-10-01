@@ -10,15 +10,17 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview_pontos_interesse"
         tools:listitem="@layout/layout_recyclerview_espacos"
+        android:layout_weight="3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_adicionar_espaco"
+        android:id="@+id/fab_adicionar_ponto_interesse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/fab_plus"
         android:layout_gravity="bottom|end"
+        android:layout_weight="1"
         app:elevation="8dp"
         app:pressedTranslationZ="18dp"/>
 
