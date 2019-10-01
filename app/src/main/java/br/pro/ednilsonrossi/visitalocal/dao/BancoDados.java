@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class BancoDados extends SQLiteOpenHelper {
 
-    private static final int VERSAO = 1;
+    private static final int VERSAO = 3;
     private static final String DATABASE_NAME = "VisitaLocal.db";
 
 
@@ -64,15 +64,19 @@ public class BancoDados extends SQLiteOpenHelper {
         db.execSQL(sql);
 
         //Insere Local
-        sql = "INSERT INTO LOCAL (nome, latitude, longitude) VALUES ('Casa', 0, 0)";
+        sql = "INSERT INTO LOCAL (id, nome, latitude, longitude) VALUES (1, 'Casa', 0, 0)";
+        db.execSQL(sql);
+        //Insere PontoInteresse
+        sql = "INSERT INTO Ponto_Interesse (nome, latitude, longitude, id_local) VALUES ('Escada', 0, 0, 1)";
         db.execSQL(sql);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         String sql;
+        sql = "DROP TABLE IF EXISTS " + TABLE_PONTOINTERESSE + ";";
+        db.execSQL(sql);
         sql = "DROP TABLE IF EXISTS " + TABLE_LOCAL + "; ";
-        sql += "DROP TABLE IF EXISTS " + TABLE_PONTOINTERESSE + ";";
         db.execSQL(sql);
         onCreate(db);
     }
