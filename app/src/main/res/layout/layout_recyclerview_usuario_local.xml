@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_usuario_local"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imageview_usuario_foto_local"
+        android:src="@drawable/ic_camera"
+        android:layout_width="80dp"
+        android:layout_height="80dp" />
+
+    <TextView
+        android:id="@+id/textview_usuario_nome_local"
+        android:text="Exemplo de Local"
+        android:textSize="20sp"
+        android:padding="15dp"
+        android:textColor="#000"
+        android:layout_toRightOf="@+id/imageview_usuario_foto_local"
+        android:layout_centerVertical="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>
