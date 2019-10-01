@@ -33,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.usuario:
-
+                intent = new Intent(this, UsuarioListaLocaisActivity.class);
+                startActivity(intent);
                 break;
 
             case R.id.sair:
