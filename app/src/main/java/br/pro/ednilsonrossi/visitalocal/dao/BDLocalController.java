@@ -80,6 +80,11 @@ public class BDLocalController {
                         cursor.getString(3),
                         cursor.getString(4));
                 local.setId(cursor.getInt(5));
+
+                List<PontoInteresse> pontos = new BDPontoInteresseController(context).recuperaTodos(local);
+                for(PontoInteresse p : pontos){
+                    local.addPontoInteresse(p);
+                }
             }
             cursor.close();
         }
