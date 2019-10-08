@@ -13,7 +13,7 @@ public class GeofenceSimples {
                     MINUTES_PER_HOUR *
                     SECONDS_PER_MINUTE *
                     MILLISECONDS_PER_SECOND;
-    public static final float DEFAULT_RADIUS_IN_METERS = 100.0f;
+    public static final float DEFAULT_RADIUS_IN_METERS = 100.0f; //100 metros de raio
 
 
     private final String mId;

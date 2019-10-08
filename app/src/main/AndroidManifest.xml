@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.UsuarioListaLocaisActivity"></activity>
+        <activity android:name=".view.MonitoraLocalActivity"></activity>
+        <activity android:name=".view.UsuarioListaLocaisActivity" />
         <activity android:name=".view.EspacoDetalhesActivity" />
         <activity android:name=".view.EspacosActivity" />
         <activity android:name=".view.LocalDetalhesActivity" />
@@ -25,6 +26,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver android:name=".view.GeofenceBroadcastReceiver" />
     </application>
 
 </manifest>

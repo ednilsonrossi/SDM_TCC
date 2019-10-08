@@ -1,5 +1,12 @@
 package br.pro.ednilsonrossi.visitalocal.model;
 
+import android.content.Context;
+
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.Geofence;
+import com.google.android.gms.location.GeofencingClient;
+import com.google.android.gms.location.LocationServices;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,4 +84,5 @@ public class Local {
     public List<PontoInteresse> getPontosInteresse(){
         return pontosInteresse;
     }
+
 }

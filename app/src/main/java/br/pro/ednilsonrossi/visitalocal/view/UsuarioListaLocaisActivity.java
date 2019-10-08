@@ -1,12 +1,12 @@
 package br.pro.ednilsonrossi.visitalocal.view;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
-
 import br.pro.ednilsonrossi.visitalocal.R;
 import br.pro.ednilsonrossi.visitalocal.dao.BDLocalController;
 import br.pro.ednilsonrossi.visitalocal.model.Local;
