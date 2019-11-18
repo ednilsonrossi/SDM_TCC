@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">VisitaLocal</string>
+    <string name="app_name">TCC - Protótipo 1</string>
 
     <string name="permission_rationale">Permissão de localização é necessária.</string>
     <string name="permission_denied_explanation">Permissão foi negada, mas é necessária para funcionamento do APP.</string>
