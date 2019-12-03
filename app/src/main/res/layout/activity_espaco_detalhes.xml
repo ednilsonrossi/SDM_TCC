@@ -39,24 +39,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <ImageView
-        android:id="@+id/imageview_foto_ponto_interesse"
-        android:src="@drawable/ic_camera"
-        android:layout_width="match_parent"
-        android:layout_height="300dp" />
-
-    <Button
-        android:id="@+id/button_tirar_foto_ponto_interesse"
-        android:text="Tirar foto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/button_gravar_audio_ponto_interesse"
-        android:text="Gravar audio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
     <Button
         android:id="@+id/button_salvar_ponto_interesse"
         android:text="Salvar Espaço"

@@ -41,11 +41,11 @@ public class UsuarioLocalAdapter extends RecyclerView.Adapter<UsuarioLocalAdapte
     public void onBindViewHolder(@NonNull LocalViewHolder viewHolder, final int i) {
         viewHolder.nomeTextView.setText(locais.get(i).getNome());
 
-        if(locais.get(i).getImagem() != null) {
-            viewHolder.fotoImageView.setImageURI(Uri.fromFile(new File(locais.get(i).getImagem())));
-        }else{
-            viewHolder.fotoImageView.setImageResource(R.drawable.ic_camera);
-        }
+//        if(locais.get(i).getImagem() != null) {
+//            viewHolder.fotoImageView.setImageURI(Uri.fromFile(new File(locais.get(i).getImagem())));
+//        }else{
+//            viewHolder.fotoImageView.setImageResource(R.drawable.ic_camera);
+//        }
 
         viewHolder.paiLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,7 +80,7 @@ public class UsuarioLocalAdapter extends RecyclerView.Adapter<UsuarioLocalAdapte
             super(itemView);
 
             nomeTextView = (TextView) itemView.findViewById(R.id.textview_usuario_nome_local);
-            fotoImageView = (ImageView) itemView.findViewById(R.id.imageview_usuario_foto_local);
+//            fotoImageView = (ImageView) itemView.findViewById(R.id.imageview_usuario_foto_local);
             paiLayout = (RelativeLayout) itemView.findViewById(R.id.layout_usuario_local);
         }
     }

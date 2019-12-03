@@ -46,12 +46,12 @@ public class EspacoDetalhesActivity extends AppCompatActivity {
     private PontoInteresse pontoInteresse;
 
     //Atributos para foto----------------------------
-    private final int REQUEST_CODE_FOTO = 256;
-    private Bitmap fotoBitmap;
+//    private final int REQUEST_CODE_FOTO = 256;
+//    private Bitmap fotoBitmap;
 
     //Atributos para audio---------------------------
-    private final int REQUEST_CODE_AUDIO = 512;
-    private Uri audioUri;
+//    private final int REQUEST_CODE_AUDIO = 512;
+//    private Uri audioUri;
 
     //Atributos de tela------------------------------
     private EditText nomePontoInteresseEditText;
@@ -59,9 +59,9 @@ public class EspacoDetalhesActivity extends AppCompatActivity {
     private TextView longitudeTextView;
     private Button obterCoordenadaButton;
     private Button salvarPontoInteresseButton;
-    private Button tirarFotoButton;
-    private Button gravarAudioButton;
-    private ImageView fotoImageView;
+//    private Button tirarFotoButton;
+//    private Button gravarAudioButton;
+//    private ImageView fotoImageView;
 
     //Atributos de localização-----------------------
     private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 128;
@@ -77,8 +77,8 @@ public class EspacoDetalhesActivity extends AppCompatActivity {
         recuperarLocal(getIntent());
 
         //Inicialização de atributos-------------------------------------------------------
-        fotoBitmap = null;
-        audioUri = null;
+//        fotoBitmap = null;
+//        audioUri = null;
 
 
         //Tela-----------------------------------------------------------------------------
@@ -99,21 +99,21 @@ public class EspacoDetalhesActivity extends AppCompatActivity {
                 salvarLocal();
             }
         });
-        fotoImageView = (ImageView) findViewById(R.id.imageview_foto_ponto_interesse);
-        tirarFotoButton = (Button) findViewById(R.id.button_tirar_foto_ponto_interesse);
-        tirarFotoButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tirarFoto();
-            }
-        });
-        gravarAudioButton = (Button) findViewById(R.id.button_gravar_audio_ponto_interesse);
-        gravarAudioButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gravarAudio();
-            }
-        });
+//        fotoImageView = (ImageView) findViewById(R.id.imageview_foto_ponto_interesse);
+//        tirarFotoButton = (Button) findViewById(R.id.button_tirar_foto_ponto_interesse);
+//        tirarFotoButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                tirarFoto();
+//            }
+//        });
+//        gravarAudioButton = (Button) findViewById(R.id.button_gravar_audio_ponto_interesse);
+//        gravarAudioButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                gravarAudio();
+//            }
+//        });
 
         //Localização----------------------------------------------------------------------
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
@@ -122,14 +122,14 @@ public class EspacoDetalhesActivity extends AppCompatActivity {
 
     private void salvarLocal(){
         if(!nomePontoInteresseEditText.getText().toString().isEmpty()){
-            String pathFoto = gravarArquivoFoto(nomePontoInteresseEditText.getText().toString());
-            String pathAudio = audioUri != null ? audioUri.toString() : "";
+//            String pathFoto = gravarArquivoFoto(nomePontoInteresseEditText.getText().toString());
+//            String pathAudio = audioUri != null ? audioUri.toString() : "";
 
             PontoInteresse pontoInteresse = new PontoInteresse(local,
                     nomePontoInteresseEditText.getText().toString(),
                     new Coordenada(lastLocation.getLatitude(), lastLocation.getLongitude()),
-                    pathFoto,
-                    pathAudio);
+                    "",
+                    "");
 
             if(new BDPontoInteresseController(this).criar(pontoInteresse)){
                 showSnackbar(getString(R.string.local_salvo));
@@ -142,29 +142,29 @@ public class EspacoDetalhesActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        switch (requestCode){
-            case REQUEST_CODE_FOTO:
-                if(data != null){
-                    Bundle bundle = data.getExtras();
-                    if(bundle != null){
-                        fotoBitmap = (Bitmap) bundle.get("data");
-                        fotoImageView.setImageBitmap(fotoBitmap);
-                    }
-                }
-                break;
-            case REQUEST_CODE_AUDIO:
-                if(resultCode == RESULT_OK){
-                    audioUri = data.getData();
-                    MediaPlayer mediaPlayer = MediaPlayer.create(this, audioUri);
-                    mediaPlayer.start();
-                }
-                break;
-        }
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//        switch (requestCode){
+//            case REQUEST_CODE_FOTO:
+//                if(data != null){
+//                    Bundle bundle = data.getExtras();
+//                    if(bundle != null){
+//                        fotoBitmap = (Bitmap) bundle.get("data");
+//                        fotoImageView.setImageBitmap(fotoBitmap);
+//                    }
+//                }
+//                break;
+//            case REQUEST_CODE_AUDIO:
+//                if(resultCode == RESULT_OK){
+//                    audioUri = data.getData();
+//                    MediaPlayer mediaPlayer = MediaPlayer.create(this, audioUri);
+//                    mediaPlayer.start();
+//                }
+//                break;
+//        }
+//    }
 
     //Métodos para construir dependencia do Ponto de Interesse--------------------------------
     private void recuperarLocal(Intent intent){
@@ -180,36 +180,36 @@ public class EspacoDetalhesActivity extends AppCompatActivity {
 
 
     //Métodos para trabalhar com a foto----------------------------------------------------
-    private void tirarFoto(){
-        Intent chamaCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(chamaCamera, REQUEST_CODE_FOTO);
-    }
+//    private void tirarFoto(){
+//        Intent chamaCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//        startActivityForResult(chamaCamera, REQUEST_CODE_FOTO);
+//    }
 
 
 
-    private String gravarArquivoFoto(String localNome){
-        final String thePath = "/imgsApp";
-        File fotosDiretorio = new File(Environment.getExternalStorageDirectory() + thePath);
-        fotosDiretorio.mkdir();
-
-        File fotoArquivo = new File(Environment.getExternalStorageDirectory() + thePath + "/" + localNome + ".png");
-        try {
-            FileOutputStream outputStream = new FileOutputStream(fotoArquivo);
-            fotoBitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
-            outputStream.close();
-
-        }catch (Exception e){
-
-        }
-        return fotoArquivo.getAbsolutePath();
-    }
+//    private String gravarArquivoFoto(String localNome){
+//        final String thePath = "/imgsApp";
+//        File fotosDiretorio = new File(Environment.getExternalStorageDirectory() + thePath);
+//        fotosDiretorio.mkdir();
+//
+//        File fotoArquivo = new File(Environment.getExternalStorageDirectory() + thePath + "/" + localNome + ".png");
+//        try {
+//            FileOutputStream outputStream = new FileOutputStream(fotoArquivo);
+//            fotoBitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+//            outputStream.close();
+//
+//        }catch (Exception e){
+//
+//        }
+//        return fotoArquivo.getAbsolutePath();
+//    }
 
 
     //Métodos para trabalhar com o audio       ----------------------------------------------------
-    private void gravarAudio(){
-        Intent chamarGravador = new Intent(MediaStore.Audio.Media.RECORD_SOUND_ACTION);
-        startActivityForResult(chamarGravador, REQUEST_CODE_AUDIO);
-    }
+//    private void gravarAudio(){
+//        Intent chamarGravador = new Intent(MediaStore.Audio.Media.RECORD_SOUND_ACTION);
+//        startActivityForResult(chamarGravador, REQUEST_CODE_AUDIO);
+//    }
 
 
 

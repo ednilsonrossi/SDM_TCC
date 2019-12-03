@@ -41,11 +41,11 @@ public class LocalAdapter extends RecyclerView.Adapter<LocalAdapter.LocalViewHol
     public void onBindViewHolder(@NonNull LocalViewHolder viewHolder, final int i) {
         viewHolder.nomeTextView.setText(locais.get(i).getNome());
 
-        if(locais.get(i).getImagem() != null) {
-            viewHolder.fotoImageView.setImageURI(Uri.fromFile(new File(locais.get(i).getImagem())));
-        }else{
-            viewHolder.fotoImageView.setImageResource(R.drawable.ic_camera);
-        }
+//        if(locais.get(i).getImagem() != null) {
+//            viewHolder.fotoImageView.setImageURI(Uri.fromFile(new File(locais.get(i).getImagem())));
+//        }else{
+//            viewHolder.fotoImageView.setImageResource(R.drawable.ic_camera);
+//        }
 
         viewHolder.paiLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,14 +71,14 @@ public class LocalAdapter extends RecyclerView.Adapter<LocalAdapter.LocalViewHol
     protected class LocalViewHolder extends RecyclerView.ViewHolder{
 
         protected TextView nomeTextView;
-        protected ImageView fotoImageView;
+//        protected ImageView fotoImageView;
         protected RelativeLayout paiLayout;
 
         public LocalViewHolder(@NonNull View itemView) {
             super(itemView);
 
             nomeTextView = (TextView) itemView.findViewById(R.id.textview_nome_local);
-            fotoImageView = (ImageView) itemView.findViewById(R.id.imageview_foto_local);
+//            fotoImageView = (ImageView) itemView.findViewById(R.id.imageview_foto_local);
             paiLayout = (RelativeLayout) itemView.findViewById(R.id.pai_layout);
         }
     }

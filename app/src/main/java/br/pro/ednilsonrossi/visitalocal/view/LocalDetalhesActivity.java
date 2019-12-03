@@ -40,12 +40,12 @@ import br.pro.ednilsonrossi.visitalocal.model.Local;
 
 public class LocalDetalhesActivity extends AppCompatActivity {
     //Atributos para foto----------------------------
-    private final int REQUEST_CODE_FOTO = 256;
-    private Bitmap fotoBitmap;
+//    private final int REQUEST_CODE_FOTO = 256;
+//    private Bitmap fotoBitmap;
 
     //Atributos para audio---------------------------
-    private final int REQUEST_CODE_AUDIO = 512;
-    private Uri audioUri;
+//    private final int REQUEST_CODE_AUDIO = 512;
+//    private Uri audioUri;
 
     //Atributos de tela------------------------------
     private EditText nomeLocalEditText;
@@ -53,9 +53,9 @@ public class LocalDetalhesActivity extends AppCompatActivity {
     private TextView longitudeTextView;
     private Button obterCoordenadaButton;
     private Button salvarLocalButton;
-    private Button tirarFotoButton;
-    private Button gravarAudioButton;
-    private ImageView fotoImageView;
+//    private Button tirarFotoButton;
+//    private Button gravarAudioButton;
+//    private ImageView fotoImageView;
 
     //Atributos de localização-----------------------
     private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 128;
@@ -68,8 +68,8 @@ public class LocalDetalhesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_local_detalhes);
 
         //Inicialização de atributos-------------------------------------------------------
-        fotoBitmap = null;
-        audioUri = null;
+//        fotoBitmap = null;
+//        audioUri = null;
 
 
         //Tela-----------------------------------------------------------------------------
@@ -90,21 +90,21 @@ public class LocalDetalhesActivity extends AppCompatActivity {
                 salvarLocal();
             }
         });
-        fotoImageView = (ImageView) findViewById(R.id.imageview_foto_espaco);
-        tirarFotoButton = (Button) findViewById(R.id.button_tirar_foto_local);
-        tirarFotoButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tirarFoto();
-            }
-        });
-        gravarAudioButton = (Button) findViewById(R.id.button_gravar_audio_local);
-        gravarAudioButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gravarAudio();
-            }
-        });
+//        fotoImageView = (ImageView) findViewById(R.id.imageview_foto_espaco);
+//        tirarFotoButton = (Button) findViewById(R.id.button_tirar_foto_local);
+//        tirarFotoButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                tirarFoto();
+//            }
+//        });
+//        gravarAudioButton = (Button) findViewById(R.id.button_gravar_audio_local);
+//        gravarAudioButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                gravarAudio();
+//            }
+//        });
 
         //Localização----------------------------------------------------------------------
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
@@ -113,13 +113,13 @@ public class LocalDetalhesActivity extends AppCompatActivity {
 
     private void salvarLocal(){
         if(!nomeLocalEditText.getText().toString().isEmpty()){
-            String pathFoto = gravarArquivoFoto(nomeLocalEditText.getText().toString());
-            String pathAudio = audioUri != null ? audioUri.toString() : "";
+//            String pathFoto = gravarArquivoFoto(nomeLocalEditText.getText().toString());
+//            String pathAudio = audioUri != null ? audioUri.toString() : "";
             Local local = new Local(
                     nomeLocalEditText.getText().toString(),
                     new Coordenada(lastLocation.getLatitude(), lastLocation.getLongitude()),
-                    pathFoto,
-                    pathAudio);
+                    "",
+                    "");
 
             if(new BDLocalController(this).criar(local)){
                 showSnackbar(getString(R.string.local_salvo));
@@ -132,62 +132,62 @@ public class LocalDetalhesActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        switch (requestCode){
-            case REQUEST_CODE_FOTO:
-                if(data != null){
-                    Bundle bundle = data.getExtras();
-                    if(bundle != null){
-                        fotoBitmap = (Bitmap) bundle.get("data");
-                        fotoImageView.setImageBitmap(fotoBitmap);
-                    }
-                }
-                break;
-            case REQUEST_CODE_AUDIO:
-                if(resultCode == RESULT_OK){
-                    audioUri = data.getData();
-                    MediaPlayer mediaPlayer = MediaPlayer.create(this, audioUri);
-                    mediaPlayer.start();
-                }
-                break;
-        }
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//        switch (requestCode){
+//            case REQUEST_CODE_FOTO:
+//                if(data != null){
+//                    Bundle bundle = data.getExtras();
+//                    if(bundle != null){
+//                        fotoBitmap = (Bitmap) bundle.get("data");
+//                        fotoImageView.setImageBitmap(fotoBitmap);
+//                    }
+//                }
+//                break;
+//            case REQUEST_CODE_AUDIO:
+//                if(resultCode == RESULT_OK){
+//                    audioUri = data.getData();
+//                    MediaPlayer mediaPlayer = MediaPlayer.create(this, audioUri);
+//                    mediaPlayer.start();
+//                }
+//                break;
+//        }
+//    }
 
 
     //Métodos para trabalhar com a foto----------------------------------------------------
-    private void tirarFoto(){
-        Intent chamaCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(chamaCamera, REQUEST_CODE_FOTO);
-    }
+//    private void tirarFoto(){
+//        Intent chamaCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//        startActivityForResult(chamaCamera, REQUEST_CODE_FOTO);
+//    }
 
 
 
-    private String gravarArquivoFoto(String localNome){
-        final String thePath = "/imgsApp";
-        File fotosDiretorio = new File(Environment.getExternalStorageDirectory() + thePath);
-        fotosDiretorio.mkdir();
-
-        File fotoArquivo = new File(Environment.getExternalStorageDirectory() + thePath + "/" + localNome + ".png");
-        try {
-            FileOutputStream outputStream = new FileOutputStream(fotoArquivo);
-            fotoBitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
-            outputStream.close();
-
-        }catch (Exception e){
-
-        }
-        return fotoArquivo.getAbsolutePath();
-    }
+//    private String gravarArquivoFoto(String localNome){
+//        final String thePath = "/imgsApp";
+//        File fotosDiretorio = new File(Environment.getExternalStorageDirectory() + thePath);
+//        fotosDiretorio.mkdir();
+//
+//        File fotoArquivo = new File(Environment.getExternalStorageDirectory() + thePath + "/" + localNome + ".png");
+//        try {
+//            FileOutputStream outputStream = new FileOutputStream(fotoArquivo);
+//            fotoBitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+//            outputStream.close();
+//
+//        }catch (Exception e){
+//
+//        }
+//        return fotoArquivo.getAbsolutePath();
+//    }
 
 
     //Métodos para trabalhar com o audio       ----------------------------------------------------
-    private void gravarAudio(){
-        Intent chamarGravador = new Intent(MediaStore.Audio.Media.RECORD_SOUND_ACTION);
-        startActivityForResult(chamarGravador, REQUEST_CODE_AUDIO);
-    }
+//    private void gravarAudio(){
+//        Intent chamarGravador = new Intent(MediaStore.Audio.Media.RECORD_SOUND_ACTION);
+//        startActivityForResult(chamarGravador, REQUEST_CODE_AUDIO);
+//    }
 
 
 

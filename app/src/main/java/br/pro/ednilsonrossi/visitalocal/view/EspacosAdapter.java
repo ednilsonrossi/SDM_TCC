@@ -40,11 +40,11 @@ public class EspacosAdapter extends RecyclerView.Adapter<EspacosAdapter.EspacoVi
     public void onBindViewHolder(@NonNull EspacoViewHolder espacoViewHolder, int i) {
         espacoViewHolder.nomeTextView.setText(pontoInteresseList.get(i).getNome());
 
-        if(pontoInteresseList.get(i).getImagem() != null) {
-            espacoViewHolder.fotoImageView.setImageURI(Uri.fromFile(new File(pontoInteresseList.get(i).getImagem())));
-        }else{
-            espacoViewHolder.fotoImageView.setImageResource(R.drawable.ic_camera);
-        }
+//        if(pontoInteresseList.get(i).getImagem() != null) {
+//            espacoViewHolder.fotoImageView.setImageURI(Uri.fromFile(new File(pontoInteresseList.get(i).getImagem())));
+//        }else{
+//            espacoViewHolder.fotoImageView.setImageResource(R.drawable.ic_camera);
+//        }
 
         /*
         espacoViewHolder.paiLayout.setOnClickListener(new View.OnClickListener() {
@@ -63,13 +63,13 @@ public class EspacosAdapter extends RecyclerView.Adapter<EspacosAdapter.EspacoVi
 
     protected class EspacoViewHolder extends RecyclerView.ViewHolder {
         protected TextView nomeTextView;
-        protected ImageView fotoImageView;
+//        protected ImageView fotoImageView;
         protected RelativeLayout paiLayout;
 
         public EspacoViewHolder(@NonNull View itemView) {
             super(itemView);
             nomeTextView = (TextView) itemView.findViewById(R.id.textview_nome_local);
-            fotoImageView = (ImageView) itemView.findViewById(R.id.imageview_foto_local);
+//            fotoImageView = (ImageView) itemView.findViewById(R.id.imageview_foto_local);
             paiLayout = (RelativeLayout) itemView.findViewById(R.id.pai_layout);
         }
     }
